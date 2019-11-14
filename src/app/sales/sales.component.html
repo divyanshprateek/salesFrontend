@@ -1,0 +1,169 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Sales</a>
+</nav>
+
+<div class="container">
+  <h1 class="text-center">
+    Sales Assignment
+    <span class="badge badge-success mx-3">Total Sales: {{ totalSales }}</span>
+  </h1>
+  <p class="text-center mx-auto">
+    Number Of Orders- Most Popular Item
+    <span class="badge badge-danger">Min: {{ min }}</span>
+    <span class="badge badge-primary">Average: {{ average }}</span>
+    <span class="badge badge-success">Max: {{ max }}</span>
+  </p>
+  <div class="row my-5">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Monthly Sales</h5>
+          <div class="row">
+            <div class="col-4">
+              <label for="month">Select Month: </label>
+            </div>
+            <div class="col-8">
+              <select name="month" id="month" class="form-control" #monthySales>
+                <option selected *ngFor="let month of months" [value]="month">{{
+                  month
+                }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <button
+                class="btn btn-primary"
+                (click)="calculateMonthySales(monthySales)"
+              >
+                Calculate
+              </button>
+            </div>
+            <div class="col-6 my-2">
+              <p class="text-primary">Rs {{ monthlySales }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Most Popular Item</h5>
+          <div class="row">
+            <div class="col-4">
+              <label for="month">Select Month: </label>
+            </div>
+            <div class="col-8">
+              <select name="month" id="month" class="form-control" #mostPopular>
+                <option selected *ngFor="let month of months" [value]="month">{{
+                  month
+                }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <button
+                class="btn btn-primary"
+                (click)="findMostPopular(mostPopular)"
+              >
+                Calculate
+              </button>
+            </div>
+            <div class="col-6 my-2">
+              <p class="text-warning">Name: {{ mostPopularItem }}</p>
+              <p class="text-danger">Quantity: {{ quantity }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Most Revenue</h5>
+          <div class="row">
+            <div class="col-4">
+              <label for="month">Select Month: </label>
+            </div>
+            <div class="col-8">
+              <select name="month" id="month" class="form-control" #mostRevenue>
+                <option selected *ngFor="let month of months" [value]="month">{{
+                  month
+                }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <button
+                class="btn btn-primary"
+                (click)="calculateMostRevenue(mostRevenue)"
+              >
+                Calculate
+              </button>
+            </div>
+            <div class="col-6 my-2">
+              <p class="text-info">Item: {{ popularItem }}</p>
+              <p class="text-danger">Rs {{ mostRev }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Number Of Orders</h5>
+          <div class="row">
+            <div class="col-4">
+              <label for="month">Select Month: </label>
+            </div>
+            <div class="col-8">
+              <select name="month" id="month" class="form-control" #num>
+                <option selected *ngFor="let month of months" [value]="month">{{
+                  month
+                }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <button class="btn btn-primary" (click)="findNumberOfOrders(num)">
+                Find
+              </button>
+            </div>
+            <div class="col-6 my-2">
+              <p class="text-primary">Orders: {{ orders }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row my-5 justify-content-center">
+    <div class="col-md-12">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <th scope="row">{{item.date}}</th>
+            <td>{{item.sku}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.unitprice}}</td>
+            <td>{{item.totalprice}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
