@@ -8,7 +8,11 @@
     <span class="badge badge-success mx-3">Total Sales: {{ totalSales }}</span>
   </h1>
   <p class="text-center mx-auto">
-    Number Of Orders- Most Popular Item
+    Most Popular Item
+    <span class="text-success text-uppercase font-weight-bold m-auto">{{
+      name
+    }}</span
+    >:
     <span class="badge badge-danger">Min: {{ min }}</span>
     <span class="badge badge-primary">Average: {{ average }}</span>
     <span class="badge badge-success">Max: {{ max }}</span>
@@ -135,6 +139,7 @@
               </button>
             </div>
             <div class="col-6 my-2">
+              <p class="text-primary">Most Popular: {{ nameOfPopular }}</p>
               <p class="text-primary">Orders: {{ orders }}</p>
             </div>
           </div>
@@ -156,11 +161,11 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of items">
-            <th scope="row">{{item.date}}</th>
-            <td>{{item.sku}}</td>
-            <td>{{item.quantity}}</td>
-            <td>{{item.unitprice}}</td>
-            <td>{{item.totalprice}}</td>
+            <th scope="row">{{ item.date }}</th>
+            <td>{{ item.sku }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unitprice }}</td>
+            <td>{{ item.totalprice }}</td>
           </tr>
         </tbody>
       </table>

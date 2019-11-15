@@ -33,49 +33,53 @@ export class SalesComponent implements OnInit {
   min: string;
   average: string;
   items: any[];
+  name: string;
+  nameOfPopular: string;
   constructor(private salesService: SalesService) {}
 
   ngOnInit() {
-    this.salesService.getTotalSales().subscribe(data => {
+    this.salesService.getTotalSales().subscribe((data: any) => {
       this.totalSales = data.totalSales;
     });
 
-    this.salesService.getMinMaxAverage().subscribe(data => {
+    this.salesService.getMinMaxAverage().subscribe((data: any) => {
+      this.name = data.name;
       this.min = data.min;
       this.max = data.max;
       this.average = data.average;
-    })
+    });
 
-    this.salesService.getItems().subscribe(data=> {
-      console.log(data);
+    this.salesService.getItems().subscribe((data: any) => {
       this.items = [...data];
-      console.log(this.items);
-    })
+    });
   }
 
-  calculateMonthySales(element: ElementRef) {
-    this.salesService.getMonthlySales(element.value).subscribe(data=> {
+  calculateMonthySales(element: HTMLInputElement) {
+    this.salesService.getMonthlySales(element.value).subscribe((data: any) => {
       this.monthlySales = data.monthlySales;
-    })
+    });
   }
 
-  findMostPopular(element: ElementRef) {
-    this.salesService.getMostPopular(element.value).subscribe(data=> {
-      this.mostPopularItem = data.item.name || 'No Item';
+  findMostPopular(element: HTMLInputElement) {
+    this.salesService.getMostPopular(element.value).subscribe((data: any) => {
+      this.mostPopularItem = data.item.name || "No Item";
       this.quantity = data.item.totalQuantity;
-    })
+    });
   }
 
-  calculateMostRevenue(element: ElementRef) {
-    this.salesService.getMostRevenue(element.value).subscribe(data=> {
-      this.popularItem = data.item.name || 'No Item';
+  calculateMostRevenue(element: HTMLInputElement) {
+    this.salesService.getMostRevenue(element.value).subscribe((data: any) => {
+      this.popularItem = data.item.name || "No Item";
       this.mostRev = data.item.totalPrice;
-    })
+    });
   }
 
-  findNumberOfOrders(element: ElementRef) {
-    this.salesService.getNumberOfOrders(element.value).subscribe(data => {
-      this.orders = data.orders;
-    })
+  findNumberOfOrders(element: HTMLInputElement) {
+    this.salesService
+      .getNumberOfOrders(element.value)
+      .subscribe((data: any) => {
+        this.orders = data.orders.number;
+        this.nameOfPopular = data.orders.name || "Not Found";
+      });
   }
 }
